@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const router = express.Router();
 const {
   home,
@@ -11,8 +12,8 @@ router.get("/", home);
 
 router.get("/cars", getAll);
 
-// router.post("/cars", postCar);
+router.post("/cars", postCar);
 
-// router.delete("/cars/:id", deleteCar);
+router.delete("/cars/:carId", deleteCar);
 
 module.exports = router;
