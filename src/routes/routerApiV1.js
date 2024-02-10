@@ -1,6 +1,5 @@
 const express = require("express");
-const app = express();
-app.use(express.json());
+const router = express.Router();
 
 let db = [
   {
@@ -59,15 +58,15 @@ let db = [
   },
 ];
 
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
   res.status(200).send("Benv indo a API");
 });
 
-app.get("/cars", (req, res) => {
+router.get("/cars", (req, res) => {
   res.status(200).json(db);
 });
 
-app.post("/cars", (req, res) => {
+router.post("/car", (req, res) => {
   const body = req.body;
   if (!body) {
     return res.status(400).end();
@@ -77,6 +76,16 @@ app.post("/cars", (req, res) => {
   }
 });
 
-app.listen(3333, () => {
-  console.log("Api iniciada");
+// Verificar, nao deleta
+router.delete("/car/:id", (req, res) => {
+  const id = req.params.id;
+  let newDB = db.filter((item) => {
+    if (item[id]) {
+      return item;
+    }
+  });
+  db = newDB;
+  res.send(newDB);
 });
+
+module.exports = router;
