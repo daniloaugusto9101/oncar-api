@@ -30,6 +30,30 @@ const getAll = (req, res) => {
   return cars;
 };
 
+const getCar = (req, res) => {
+  const { carId } = req.params;
+  const cars = coonect("carros")
+    .where("id", carId)
+    .then((dados) => {
+      if (dados.length > 0) {
+        res.status(200).json({
+          message: "Carro obtido com sucesso",
+          data: dados[0],
+        });
+      } else {
+        res.status(404).json({
+          message: "Carro não encontrado",
+        });
+      }
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: `Erro ao procurar o carro: ${err.message}` });
+    });
+  return cars;
+};
+
 const postCar = (req, res) => {
   const cars = coonect("carros")
     .insert(req.body)
@@ -65,6 +89,7 @@ const deleteCar = (req, res) => {
 module.exports = {
   home,
   getAll,
+  getCar,
   postCar,
   deleteCar,
 };

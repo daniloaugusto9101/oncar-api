@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   home,
   getAll,
+  getCar,
   postCar,
   deleteCar,
 } = require("../controllers/carController");
@@ -11,6 +12,8 @@ const {
 router.get("/", home);
 
 router.get("/cars", getAll);
+
+router.get("/cars/:carId", getCar);
 
 router.post("/cars", postCar);
 
