@@ -26,23 +26,6 @@ const getAll = (req, res) => {
     });
   return cars;
 };
-// const getAll = (req, res) => {
-//   const cars = coonect("carros")
-//     .select()
-//     .then((resp) => {
-//       res.status(200).json({
-//         message: "Carros obtidos com sucesso",
-//         data: resp,
-//       });
-//     })
-//     .catch((err) => {
-//       // console.log(err);
-//       res
-//         .status(200)
-//         .json({ message: `Erro ao obter os carros: ${err.message}` });
-//     });
-//   return cars;
-// };
 
 const getCar = (req, res) => {
   const { carId } = req.params;
