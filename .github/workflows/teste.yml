@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Subir API
-        run: node src/server.js
+        run: npm run start
 
       - name: Iniciar testes
         run: npm test
