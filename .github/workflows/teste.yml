@@ -7,6 +7,9 @@ on:
 jobs:
   teste-unitarios:
     runs-on: ubuntu-latest
+    env:
+      END_POINT_V1: "/api/v1"
+      PORT: 3333
     steps:
       - name: Checkout projeto
         uses: actions/checkout@v3
