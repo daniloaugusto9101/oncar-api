@@ -21,7 +21,11 @@ jobs:
         run: npm install
 
       - name: Subir API
-        run: npm run start
+        run: |
+          npm run start &  # Inicia a API em segundo plano
+
+          # Aguarda alguns segundos para a API inicializar completamente
+          sleep 10
 
       - name: Iniciar testes
         run: npm test
