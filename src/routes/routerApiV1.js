@@ -7,6 +7,7 @@ const {
   getCar,
   postCar,
   deleteCar,
+  updateCar,
 } = require("../controllers/carController");
 
 router.get("/", home);
@@ -18,5 +19,7 @@ router.get("/cars/:carId", getCar);
 router.post("/cars", postCar);
 
 router.delete("/cars/:carId", deleteCar);
+
+router.put("/cars/:carId", updateCar);
 
 module.exports = router;
