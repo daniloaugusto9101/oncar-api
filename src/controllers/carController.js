@@ -56,7 +56,7 @@ const postCar = (req, res) => {
     .insert(req.body)
     .then(() => {
       res.status(201).json({
-        message: "Produto adicionado com sucesso",
+        message: "Carro adicionado com sucesso",
       });
     })
     .catch((err) => {
@@ -73,7 +73,7 @@ const deleteCar = (req, res) => {
     .where("id", carId)
     .del()
     .then(() => {
-      res.status(200).json({ message: `Carro excluido com sucesso` });
+      res.status(200).json({ message: `Carro excluído com sucesso` });
     })
     .catch((err) => {
       res

@@ -35,7 +35,7 @@ describe("Testes da API", () => {
   });
   // Teste para o método deleteCar
   it('Deve excluir um carro existente', async () => {
-    const carId = 299;
+    const carId = 304;
     const response = await request(app).delete(`/api/v1/cars/${carId}`);
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('message', 'Carro excluído com sucesso');
