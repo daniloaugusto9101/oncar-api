@@ -6,7 +6,7 @@ const coonect = require("knex")(knexConfig);
 const home = (req, res) => {
   return res.status(200).json({
     message: "Welcome",
-    author: "Danilo Augusto",
+    author: "Danilo Augusto|Rafael Lucas",
     version: "API V1",
     endpoint: "/api/v1/cars",
   });
@@ -83,10 +83,33 @@ const deleteCar = (req, res) => {
   return cars;
 };
 
+const updateCar = (req, res) => {
+  const { carId } = req.params;
+  const carData = req.body;
+
+  const cars = coonect("carros")
+    .where("id", carId)
+    .update(carData)
+    .then((count) => {
+      console.log(`Número de carros atualizados: ${count}`);
+      if (count > 0) {
+        res.status(200).json({ message: "Carro atualizado com sucesso" });
+      } else {
+        res.status(404).json({ message: "Carro não encontrado" });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ message: `Erro ao atualizar o carro: ${err.message}` });
+    });
+  return cars;
+};
+
+
 module.exports = {
   home,
   getAll,
   getCar,
   postCar,
   deleteCar,
+  updateCar,
 };
